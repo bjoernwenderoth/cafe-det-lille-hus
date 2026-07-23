@@ -1,22 +1,30 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { address } from "@/lib/opening-hours";
+import logo from "@/assets/logo/logo-square-white.png";
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-dark-foreground/10 bg-dark">
-  <div
-    class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-dark-foreground/60 sm:flex-row sm:items-center sm:justify-between sm:px-6"
-  >
-    <p class="flex items-center gap-2">
-      <Icon name="mdi:map-marker" class="h-4 w-4 text-tan" />
-      {address.street}, {address.zipCity}
-    </p>
-    <p class="flex items-center gap-2">
-      <Icon name="mdi:clock-outline" class="h-4 w-4 text-tan" />
-      Mi–Fr 10–17 Uhr, Sa 10–13 Uhr
-    </p>
-    <p>&copy; {year} Café Det Lille Hus. Alle Rechte vorbehalten.</p>
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div class="flex justify-center">
+      <Image src={logo} alt="Det Lille Hus – Café & Kuchen" height={280} class="h-40 w-auto sm:h-48" />
+    </div>
+
+    <div
+      class="mt-8 flex flex-col gap-4 border-t border-dark-foreground/10 pt-6 text-sm text-dark-foreground/60 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="flex items-center gap-2">
+        <Icon name="mdi:map-marker" class="h-4 w-4 text-tan" />
+        {address.street}, {address.zipCity}
+      </p>
+      <p class="flex items-center gap-2">
+        <Icon name="mdi:clock-outline" class="h-4 w-4 text-tan" />
+        Mi–Fr 10–17 Uhr, Sa 10–13 Uhr
+      </p>
+      <p>&copy; {year} Café Det Lille Hus. Alle Rechte vorbehalten.</p>
+    </div>
   </div>
 </footer>

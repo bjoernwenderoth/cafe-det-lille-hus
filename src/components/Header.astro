@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import logo from "@/assets/logo/logo-wide-black.png";
 
 const baseUrl = import.meta.env.BASE_URL;
 
@@ -12,10 +14,9 @@ const navItems = [
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-    <a href={baseUrl} class="flex items-center gap-2 font-display text-lg font-semibold tracking-tight text-foreground">
-      <Icon name="mdi:coffee" class="h-6 w-6 text-primary" />
-      Café Det Lille Hus
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6">
+    <a href={baseUrl} class="flex items-center">
+      <Image src={logo} alt="Det Lille Hus – Café & Kuchen" height={128} class="h-16 w-auto sm:h-20" />
     </a>
     <nav class="hidden gap-8 sm:flex">
       {
