@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/open-sans";
+@import "@fontsource-variable/raleway";
 
 /*
  * Craft-Cafe-Stil – Café Det Lille Hus
@@ -86,8 +86,8 @@
   --radius-xl: calc(var(--radius) + 0.5rem);
 
   /* Lokal gehostete Fonts (kein Google-Fonts-CDN, kein Cookie-Banner nötig) */
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-sans: "Open Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Raleway Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Schritt 3: Basis-Styles – Variablen direkt referenzieren, nicht erneut in hsl() wrappen */
