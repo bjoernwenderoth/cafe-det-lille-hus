@@ -9,7 +9,7 @@
  * per @theme inline auf Tailwind-Utilities.
  */
 :root {
-  --background: hsl(36 40% 97%);
+  --background: hsl(40 20% 97%); /* #F9F8F6 */
   --foreground: hsl(20 15% 15%);
 
   --card: hsl(40 45% 98%);
@@ -40,7 +40,7 @@
   --dark-muted: hsl(24 20% 34%);
 
   /* Warme Karamell-Fläche für Speisekarten-/Highlight-Sektionen */
-  --tan: hsl(32 42% 72%);
+  --tan: hsl(35 29% 65%); /* #bfa98b */
   --tan-foreground: hsl(24 30% 20%);
 
   --radius: 1rem;
