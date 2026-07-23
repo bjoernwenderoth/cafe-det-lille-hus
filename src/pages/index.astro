@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 import Hero from "@components/Hero.astro";
+import Gallery from "@components/Gallery.astro";
 import Contact from "@components/Contact.astro";
 import MenuTabs from "@/components/MenuTabs";
 import { localize, pbFileUrl } from "@/lib/pocketbase";
@@ -55,8 +56,9 @@ const menu = categories
         </a>
       </div>
       <p class="text-lg leading-relaxed text-muted-foreground">
-        Wir rösten in kleinen Mengen, backen jeden Morgen frisch und legen Wert auf regionale
-        Zutaten. Kein Lärm, keine Eile – nur guter Kaffee, ehrliches Essen und Zeit für dich.
+        In unserem Fachwerkhaus in Habichtswald-Ehlen verbinden wir Café und Wohnaccessoires-
+        Laden: hausgemachte Waffeln und Kuchen, frisch gebrühter Kaffee – und nebenan
+        skandinavisch inspirierte Deko zum Stöbern und Mitnehmen.
       </p>
     </div>
   </section>
@@ -76,6 +78,8 @@ const menu = categories
       </div>
     </div>
   </section>
+
+  <Gallery />
 
   <Contact />
 </BaseLayout>

@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import interiorShopCorner from "@/assets/restaurant/interior-shop-corner.webp";
+import wafflesTerrace from "@/assets/restaurant/waffles-terrace.webp";
+import hotChocolate from "@/assets/restaurant/hot-chocolate.webp";
+import wafflesAutumn from "@/assets/restaurant/waffles-autumn.webp";
+import breakfastPlatter from "@/assets/restaurant/breakfast-platter.webp";
+
+const photos = [
+  { src: interiorShopCorner, alt: "Gemütliche Sitzecke im Café Det Lille Hus", class: "sm:col-span-2 sm:row-span-2" },
+  { src: wafflesTerrace, alt: "Frisch gebackene Waffeln mit Kaffee auf der Terrasse", class: "" },
+  { src: hotChocolate, alt: "Heiße Schokolade im Café Det Lille Hus", class: "" },
+  { src: wafflesAutumn, alt: "Waffeln mit Cappuccino und herbstlicher Deko", class: "" },
+  { src: breakfastPlatter, alt: "Frühstücksteller mit Käse, Schinken und Obst", class: "" },
+];
+---
+
+<section class="border-t border-border">
+  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <p class="text-sm font-medium tracking-[0.2em] text-secondary uppercase">Impressionen</p>
+    <h2 class="mt-3 font-display text-3xl font-normal text-foreground sm:text-4xl">
+      Ein Blick ins Det Lille Hus
+    </h2>
+
+    <div class="mt-10 grid grid-cols-2 gap-4 sm:auto-rows-[220px] sm:grid-cols-4">
+      {
+        photos.map((photo) => (
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            widths={[300, 500, 700]}
+            sizes="(min-width: 640px) 25vw, 50vw"
+            class={`h-full w-full rounded-xl border border-border object-cover ${photo.class}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

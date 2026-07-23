@@ -1,13 +1,15 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import OpeningStatus from "@components/OpeningStatus.astro";
 import { address } from "@/lib/opening-hours";
+import interiorLounge from "@/assets/restaurant/interior-lounge.jpg";
 ---
 
 <section class="mx-auto max-w-6xl px-4 pt-14 pb-20 sm:px-6 sm:pt-20 sm:pb-28">
   <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
     <div>
-      <p class="text-sm font-medium tracking-[0.2em] text-secondary uppercase">Café &amp; Rösterei</p>
+      <p class="text-sm font-medium tracking-[0.2em] text-secondary uppercase">Café &amp; Wohnaccessoires</p>
       <h1 class="mt-4 text-balance font-display text-5xl leading-[1.05] font-normal text-foreground sm:text-6xl">
         Ein kleines Haus für gute Momente.
       </h1>
@@ -49,15 +51,13 @@ import { address } from "@/lib/opening-hours";
     <div class="relative mx-auto w-full max-w-md lg:mx-0">
       <div class="absolute -right-4 -bottom-4 h-full w-full rounded-2xl bg-accent/25 sm:-right-6 sm:-bottom-6" aria-hidden="true">
       </div>
-      <div
-        class="relative flex aspect-4/5 w-full items-center justify-center rounded-2xl border border-border bg-card p-8 text-center shadow-sm"
-      >
-        <div class="flex flex-col items-center gap-3 text-muted-foreground">
-          <Icon name="mdi:coffee-outline" class="h-10 w-10 text-primary" />
-          <p class="font-display text-lg text-foreground">Café Det Lille Hus</p>
-          <p class="max-w-40 text-sm">Platzhalter für ein Foto vom Café-Interieur</p>
-        </div>
-      </div>
+      <Image
+        src={interiorLounge}
+        alt="Gemütlicher Sitzbereich im Café Det Lille Hus"
+        widths={[400, 600, 800]}
+        sizes="(min-width: 1024px) 28rem, 90vw"
+        class="relative aspect-4/5 w-full rounded-2xl border border-border object-cover shadow-sm"
+      />
     </div>
   </div>
 </section>
