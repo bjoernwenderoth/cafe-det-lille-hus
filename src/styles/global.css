@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/400-italic.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+
+/*
+ * Warm Minimalismus – Café Det Lille Hus
+ * Schritt 1: Rohe Farbwerte als CSS-Variablen (vollständige hsl()-Werte, kein
+ * v3-Triplet-Format), getrennt in Light-Mode-Root. Schritt 2 mappt sie unten
+ * per @theme inline auf Tailwind-Utilities.
+ */
+:root {
+  --background: hsl(36 45% 96%);
+  --foreground: hsl(20 40% 14%);
+
+  --card: hsl(40 50% 98%);
+  --card-foreground: hsl(20 40% 14%);
+
+  --primary: hsl(24 35% 32%);
+  --primary-foreground: hsl(38 45% 97%);
+
+  --secondary: hsl(28 50% 48%);
+  --secondary-foreground: hsl(38 45% 97%);
+
+  --accent: hsl(95 18% 42%);
+  --accent-foreground: hsl(38 45% 97%);
+
+  --muted: hsl(36 30% 91%);
+  --muted-foreground: hsl(24 18% 38%);
+
+  --border: hsl(34 28% 85%);
+  --input: hsl(34 28% 85%);
+  --ring: hsl(24 35% 32%);
+
+  --destructive: hsl(0 70% 50%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --radius: 0.75rem;
+}
+
+/* Schritt 2: CSS-Variablen auf Tailwind-Utilities mappen (bg-primary, text-accent, …) */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 0.25rem);
+  --radius-xl: calc(var(--radius) + 0.5rem);
+
+  /* Lokal gehostete Fonts (kein Google-Fonts-CDN, kein Cookie-Banner nötig) */
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+}
+
+/* Schritt 3: Basis-Styles – Variablen direkt referenzieren, nicht erneut in hsl() wrappen */
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}

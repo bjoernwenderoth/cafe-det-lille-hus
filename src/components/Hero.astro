@@ -1,0 +1,63 @@
+---
+import { Icon } from "astro-icon/components";
+import OpeningStatus from "@components/OpeningStatus.astro";
+import { address } from "@/lib/opening-hours";
+---
+
+<section class="mx-auto max-w-6xl px-4 pt-14 pb-20 sm:px-6 sm:pt-20 sm:pb-28">
+  <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+    <div>
+      <p class="text-sm font-medium tracking-[0.2em] text-secondary uppercase">Café &amp; Rösterei</p>
+      <h1 class="mt-4 text-balance font-display text-5xl leading-[1.05] font-normal text-foreground sm:text-6xl">
+        Ein kleines Haus für gute Momente.
+      </h1>
+      <p class="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
+        Handgebrühter Kaffee, hausgemachter Kuchen und eine ruhige, warme Atmosphäre –
+        mitten in Musterstadt.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a
+          href="#speisekarte"
+          class="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
+        >
+          Speisekarte ansehen
+          <Icon name="mdi:arrow-down" class="h-4 w-4" />
+        </a>
+        <a
+          href="#kontakt"
+          class="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-medium text-foreground transition hover:border-primary hover:text-primary"
+        >
+          Anfahrt &amp; Kontakt
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:gap-6">
+        <a
+          href={`https://www.google.com/maps?q=${encodeURIComponent(`${address.street}, ${address.zipCity}`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-sm font-medium text-foreground transition hover:text-primary"
+        >
+          <Icon name="mdi:map-marker" class="h-4 w-4 text-primary" />
+          {address.street}, {address.zipCity}
+        </a>
+        <OpeningStatus />
+      </div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-md lg:mx-0">
+      <div class="absolute -right-4 -bottom-4 h-full w-full rounded-2xl bg-accent/25 sm:-right-6 sm:-bottom-6" aria-hidden="true">
+      </div>
+      <div
+        class="relative flex aspect-4/5 w-full items-center justify-center rounded-2xl border border-border bg-card p-8 text-center shadow-sm"
+      >
+        <div class="flex flex-col items-center gap-3 text-muted-foreground">
+          <Icon name="mdi:coffee-outline" class="h-10 w-10 text-primary" />
+          <p class="font-display text-lg text-foreground">Café Det Lille Hus</p>
+          <p class="max-w-40 text-sm">Platzhalter für ein Foto vom Café-Interieur</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

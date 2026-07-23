@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+import { address } from "@/lib/opening-hours";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-background">
+  <div
+    class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6"
+  >
+    <p class="flex items-center gap-2">
+      <Icon name="mdi:map-marker" class="h-4 w-4 text-primary" />
+      {address.street}, {address.zipCity}
+    </p>
+    <p class="flex items-center gap-2">
+      <Icon name="mdi:clock-outline" class="h-4 w-4 text-primary" />
+      Di–So: 08:00–18:00 Uhr, Montag Ruhetag
+    </p>
+    <p>&copy; {year} Café Det Lille Hus. Alle Rechte vorbehalten.</p>
+  </div>
+</footer>

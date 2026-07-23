@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import Hero from "@components/Hero.astro";
+import Contact from "@components/Contact.astro";
+import MenuTabs from "@/components/MenuTabs";
+import { localize, pbFileUrl } from "@/lib/pocketbase";
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const categories = await getCollection("categories");
+const products = await getCollection("products");
+
+const currency = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" });
+
+const menu = categories
+  .sort((a, b) => a.data.position - b.data.position)
+  .map((category) => ({
+    id: category.id,
+    label: localize(category.data.name),
+    items: products
+      .filter((product) => product.data.category === category.id && product.data.available)
+      .sort((a, b) => a.data.position - b.data.position)
+      .map((product) => ({
+        name: localize(product.data.name),
+        description: localize(product.data.description) || undefined,
+        price: currency.format(product.data.price),
+        image: product.data.image
+          ? pbFileUrl(product.data.collectionId, product.id, product.data.image, "96x96f")
+          : undefined,
+        alt: localize(product.data.alt) || undefined,
+      })),
+  }))
+  .filter((category) => category.items.length > 0);
+---
+
+<BaseLayout
+  title="Startseite"
+  description="Café Det Lille Hus – Handgebrühter Kaffee, hausgemachter Kuchen und eine warme, ruhige Atmosphäre mitten in Musterstadt."
+>
+  <Hero />
+
+  <section class="border-t border-border">
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+      <div class="flex flex-col gap-4 border-l-2 border-accent/50 pl-6">
+        <Icon name="mdi:leaf" class="h-6 w-6 text-accent" />
+        <p class="font-display text-2xl leading-snug text-foreground">
+          „Det Lille Hus" bedeutet <em>das kleine Haus</em> – unser Anspruch an einen Ort, an dem
+          man sich sofort wohlfühlt.
+        </p>
+        <a href={`${baseUrl}about`} class="inline-flex w-fit items-center gap-2 text-sm font-medium text-primary hover:underline">
+          Mehr über uns
+          <Icon name="mdi:arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+      <p class="text-lg leading-relaxed text-muted-foreground">
+        Wir rösten in kleinen Mengen, backen jeden Morgen frisch und legen Wert auf regionale
+        Zutaten. Kein Lärm, keine Eile – nur guter Kaffee, ehrliches Essen und Zeit für dich.
+      </p>
+    </div>
+  </section>
+
+  <section id="speisekarte" class="border-t border-border bg-muted/40">
+    <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <p class="text-sm font-medium tracking-[0.2em] text-secondary uppercase">Speisekarte</p>
+      <h2 class="mt-3 font-display text-3xl font-normal text-foreground sm:text-4xl">
+        Was uns freut, dir zu servieren
+      </h2>
+      <p class="mt-4 max-w-xl text-muted-foreground">
+        Eine kleine Auswahl unserer Karte – wechselt saisonal und je nach Tagesangebot.
+      </p>
+
+      <div class="mt-10">
+        <MenuTabs client:visible menu={menu} />
+      </div>
+    </div>
+  </section>
+
+  <Contact />
+</BaseLayout>

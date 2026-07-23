@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon/components";
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const navItems = [
+  { href: baseUrl, label: "Startseite" },
+  { href: `${baseUrl}about`, label: "Über uns" },
+  { href: `${baseUrl}#speisekarte`, label: "Speisekarte" },
+  { href: `${baseUrl}#kontakt`, label: "Kontakt" },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+    <a href={baseUrl} class="flex items-center gap-2 font-display text-lg font-normal text-foreground">
+      <Icon name="mdi:coffee" class="h-6 w-6 text-primary" />
+      Café Det Lille Hus
+    </a>
+    <nav class="hidden gap-8 sm:flex">
+      {
+        navItems.map((item) => (
+          <a href={item.href} class="text-sm font-medium text-muted-foreground transition hover:text-primary">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <details class="group relative sm:hidden">
+      <summary
+        aria-label="Menü öffnen"
+        class="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full border border-border text-foreground marker:content-none [&::-webkit-details-marker]:hidden"
+      >
+        <Icon name="mdi:menu" class="h-5 w-5 group-open:hidden" />
+        <Icon name="mdi:close" class="hidden h-5 w-5 group-open:block" />
+      </summary>
+      <nav class="absolute top-12 right-0 flex w-48 flex-col gap-1 rounded-xl border border-border bg-card p-2 shadow-md">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class="rounded-lg px-3 py-2 text-sm font-medium text-foreground transition hover:bg-muted"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </details>
+  </div>
+</header>

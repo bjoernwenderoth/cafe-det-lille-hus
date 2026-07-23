@@ -1,0 +1,53 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  mapsQuery?: string;
+}
+
+const { mapsQuery = "Musterstraße 1, 12345 Musterstadt" } = Astro.props;
+const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}&output=embed`;
+---
+
+<div
+  id="map-consent"
+  data-src={embedSrc}
+  class="relative flex aspect-4/3 w-full flex-col items-center justify-center gap-4 rounded-xl border border-border bg-muted p-8 text-center sm:aspect-video"
+>
+  <Icon name="mdi:map-marker-outline" class="h-10 w-10 text-primary" />
+  <div>
+    <p class="font-display text-lg text-foreground">Karte anzeigen</p>
+    <p class="mt-1 max-w-sm text-sm text-muted-foreground">
+      Beim Laden der Karte wird eine Verbindung zu Google Maps hergestellt und es können Cookies
+      von Google gesetzt werden.
+    </p>
+  </div>
+  <button
+    type="button"
+    id="map-consent-button"
+    class="inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+  >
+    Karte laden & Google Maps akzeptieren
+  </button>
+</div>
+
+<script>
+  const wrapper = document.getElementById("map-consent");
+  const button = document.getElementById("map-consent-button");
+
+  button?.addEventListener("click", () => {
+    if (!wrapper) return;
+    const src = wrapper.dataset.src;
+    if (!src) return;
+
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.title = "Google Maps – Café Det Lille Hus";
+    iframe.className = "h-full w-full rounded-xl border-0";
+
+    wrapper.replaceChildren(iframe);
+    wrapper.classList.remove("p-8", "gap-4", "bg-muted");
+  });
+</script>

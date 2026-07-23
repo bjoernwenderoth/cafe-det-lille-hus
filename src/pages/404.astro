@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Seite nicht gefunden" description="Diese Seite existiert leider nicht.">
+  <section class="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center sm:px-6">
+    <h1 class="font-display text-6xl font-normal text-primary">404</h1>
+    <p class="mt-4 text-lg text-muted-foreground">Diese Seite konnte leider nicht gefunden werden.</p>
+    <a
+      href={baseUrl}
+      class="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
+    >
+      Zurück zur Startseite
+    </a>
+  </section>
+</BaseLayout>

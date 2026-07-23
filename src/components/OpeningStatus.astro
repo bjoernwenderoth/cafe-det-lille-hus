@@ -1,0 +1,61 @@
+---
+import { openingHours } from "@/lib/opening-hours";
+---
+
+<span
+  id="opening-status"
+  data-schedule={JSON.stringify(openingHours)}
+  class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-muted-foreground"
+>
+  <span class="h-2 w-2 rounded-full bg-muted-foreground/50"></span>
+  Öffnungszeiten werden geladen …
+</span>
+
+<script>
+  const el = document.getElementById("opening-status");
+  if (el) {
+    const schedule = JSON.parse(el.dataset.schedule ?? "[]") as Array<{
+      day: number;
+      label: string;
+      open?: string;
+      close?: string;
+      closed?: boolean;
+    }>;
+
+    const now = new Date();
+    const today = schedule.find((d) => d.day === now.getDay());
+    const dot = el.querySelector("span")!;
+    const minutesNow = now.getHours() * 60 + now.getMinutes();
+
+    const toMinutes = (t: string) => {
+      const [h, m] = t.split(":").map(Number);
+      return h * 60 + m;
+    };
+
+    let isOpen = false;
+    let text = "Aktuell geschlossen";
+
+    if (today && !today.closed && today.open && today.close) {
+      isOpen = minutesNow >= toMinutes(today.open) && minutesNow < toMinutes(today.close);
+      text = isOpen ? `Jetzt geöffnet – bis ${today.close} Uhr` : `Heute geschlossen`;
+    }
+
+    if (!isOpen) {
+      const order = [0, 1, 2, 3, 4, 5, 6];
+      const idx = order.indexOf(now.getDay());
+      for (let i = 1; i <= 7; i++) {
+        const next = schedule.find((d) => d.day === order[(idx + i) % 7]);
+        if (next && !next.closed && next.open) {
+          text = `Geschlossen – öffnet ${i === 1 ? "morgen" : next.label} um ${next.open} Uhr`;
+          break;
+        }
+      }
+    }
+
+    el.lastChild!.textContent = text;
+    dot.className = isOpen ? "h-2 w-2 rounded-full bg-accent" : "h-2 w-2 rounded-full bg-muted-foreground/50";
+    el.classList.toggle("text-accent-foreground", false);
+    el.classList.toggle("border-accent/40", isOpen);
+    el.classList.toggle("bg-accent/10", isOpen);
+  }
+</script>
