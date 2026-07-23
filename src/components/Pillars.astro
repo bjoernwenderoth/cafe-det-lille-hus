@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import exteriorFacade from "@/assets/restaurant/exterior-facade.jpg";
+
+const pillars = [
+  {
+    number: "01",
+    title: "Café",
+    text: "Handgebrühter Kaffee und hausgemachte Kuchen in gemütlicher Atmosphäre.",
+  },
+  {
+    number: "02",
+    title: "Frühstück",
+    text: "Herzhaft oder süß – täglich frisch zubereitet, mit Zeit zum Genießen.",
+  },
+  {
+    number: "03",
+    title: "Wohnaccessoires",
+    text: "Skandinavisch inspirierte Deko zum Stöbern und Mitnehmen.",
+  },
+  {
+    number: "04",
+    title: "Gemütlichkeit",
+    text: "Ein Ort zum Ankommen, Verweilen und Wohlfühlen – mitten in Ehlen.",
+  },
+];
+---
+
+<section class="relative">
+  <Image
+    src={exteriorFacade}
+    alt="Das Fachwerkhaus von Café Det Lille Hus"
+    widths={[800, 1200, 1800, 2400]}
+    sizes="100vw"
+    class="h-[420px] w-full object-cover sm:h-[480px]"
+  />
+
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="relative -mt-20 grid gap-5 sm:-mt-24 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        pillars.map((pillar, i) => (
+          <div data-reveal style={`transition-delay: ${i * 90}ms`} class="rounded-2xl bg-card p-6 shadow-lg">
+            <p class="font-display text-4xl font-extrabold text-tan">{pillar.number}</p>
+            <h3 class="mt-3 font-display text-lg font-bold text-foreground">{pillar.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="pb-20 sm:pb-28"></div>
+</section>

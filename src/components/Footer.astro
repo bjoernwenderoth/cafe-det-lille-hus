@@ -5,16 +5,16 @@ import { address } from "@/lib/opening-hours";
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-border bg-background">
+<footer class="border-t border-dark-foreground/10 bg-dark">
   <div
-    class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6"
+    class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-dark-foreground/60 sm:flex-row sm:items-center sm:justify-between sm:px-6"
   >
     <p class="flex items-center gap-2">
-      <Icon name="mdi:map-marker" class="h-4 w-4 text-primary" />
+      <Icon name="mdi:map-marker" class="h-4 w-4 text-tan" />
       {address.street}, {address.zipCity}
     </p>
     <p class="flex items-center gap-2">
-      <Icon name="mdi:clock-outline" class="h-4 w-4 text-primary" />
+      <Icon name="mdi:clock-outline" class="h-4 w-4 text-tan" />
       Mi–Fr 10–17 Uhr, Sa 10–13 Uhr
     </p>
     <p>&copy; {year} Café Det Lille Hus. Alle Rechte vorbehalten.</p>

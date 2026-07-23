@@ -21,7 +21,7 @@ interface MenuTabsProps {
 export default function MenuTabs({ menu }: MenuTabsProps) {
   if (menu.length === 0) {
     return (
-      <p className="text-sm text-muted-foreground">
+      <p className="text-center text-tan-foreground/80">
         Die Speisekarte wird gerade aktualisiert – schau bald wieder vorbei.
       </p>
     );
@@ -29,12 +29,13 @@ export default function MenuTabs({ menu }: MenuTabsProps) {
 
   return (
     <Tabs defaultValue={menu[0].id} className="w-full">
-      <TabsList className="h-auto w-full flex-wrap justify-start gap-1 bg-transparent p-0">
+      <TabsList className="h-auto w-full flex-wrap justify-center gap-2 bg-transparent p-0">
         {menu.map((category) => (
           <TabsTrigger
             key={category.id}
             value={category.id}
-            className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/70 data-[state=active]:border-primary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none"
+            data-cat={category.id}
+            className="rounded-full border-2 border-tan-foreground/30 bg-transparent px-5 py-2.5 text-sm font-bold tracking-wide text-tan-foreground uppercase shadow-none data-[state=active]:border-tan-foreground data-[state=active]:bg-tan-foreground data-[state=active]:text-tan"
           >
             {category.label}
           </TabsTrigger>
@@ -42,26 +43,31 @@ export default function MenuTabs({ menu }: MenuTabsProps) {
       </TabsList>
 
       {menu.map((category) => (
-        <TabsContent key={category.id} value={category.id} className="mt-8">
-          <ul className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <TabsContent key={category.id} value={category.id} id={`speisekarte-${category.id}`} className="mt-12 scroll-mt-24">
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {category.items.map((item) => (
-              <li key={item.name} className="flex items-start gap-4 border-b border-border pb-3">
-                {item.image && (
+              <li key={item.name} className="flex flex-col overflow-hidden rounded-2xl bg-card shadow-md">
+                {item.image ? (
                   <img
                     src={item.image}
                     alt={item.alt || item.name}
                     loading="lazy"
-                    className="h-12 w-12 shrink-0 rounded-lg object-cover"
+                    className="h-40 w-full object-cover"
                   />
-                )}
-                <div className="flex flex-1 items-baseline justify-between gap-4">
-                  <div>
-                    <p className="font-display text-lg text-foreground">{item.name}</p>
-                    {item.description && (
-                      <p className="mt-1 text-sm text-muted-foreground">{item.description}</p>
-                    )}
+                ) : (
+                  <div className="flex h-40 w-full items-center justify-center bg-muted text-muted-foreground/40">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" />
+                      <path d="M6 1v3M10 1v3M14 1v3" />
+                    </svg>
                   </div>
-                  <span className="shrink-0 font-medium text-secondary">{item.price}</span>
+                )}
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="font-display text-lg font-bold text-secondary uppercase">{item.name}</p>
+                  {item.description && (
+                    <p className="mt-1 flex-1 text-sm text-muted-foreground">{item.description}</p>
+                  )}
+                  <p className="mt-3 font-display text-lg font-extrabold text-foreground">{item.price}</p>
                 </div>
               </li>
             ))}

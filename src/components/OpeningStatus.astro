@@ -5,9 +5,9 @@ import { openingHours } from "@/lib/opening-hours";
 <span
   id="opening-status"
   data-schedule={JSON.stringify(openingHours)}
-  class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-muted-foreground"
+  class="inline-flex items-center gap-2 rounded-full border border-dark-foreground/25 bg-dark-foreground/5 px-4 py-1.5 text-sm font-medium text-dark-foreground/80"
 >
-  <span class="h-2 w-2 rounded-full bg-muted-foreground/50"></span>
+  <span class="h-2 w-2 rounded-full bg-dark-foreground/40"></span>
   Öffnungszeiten werden geladen …
 </span>
 
@@ -53,9 +53,8 @@ import { openingHours } from "@/lib/opening-hours";
     }
 
     el.lastChild!.textContent = text;
-    dot.className = isOpen ? "h-2 w-2 rounded-full bg-accent" : "h-2 w-2 rounded-full bg-muted-foreground/50";
-    el.classList.toggle("text-accent-foreground", false);
-    el.classList.toggle("border-accent/40", isOpen);
-    el.classList.toggle("bg-accent/10", isOpen);
+    dot.className = isOpen ? "h-2 w-2 rounded-full bg-tan" : "h-2 w-2 rounded-full bg-dark-foreground/40";
+    el.classList.toggle("border-tan/50", isOpen);
+    el.classList.toggle("bg-tan/10", isOpen);
   }
 </script>

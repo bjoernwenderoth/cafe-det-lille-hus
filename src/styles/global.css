@@ -1,43 +1,52 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
-@import "@fontsource/playfair-display/400.css";
-@import "@fontsource/playfair-display/400-italic.css";
-@import "@fontsource/playfair-display/600.css";
-@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+@import "@fontsource/poppins/800.css";
 
 /*
- * Warm Minimalismus – Café Det Lille Hus
+ * Craft-Cafe-Stil – Café Det Lille Hus
  * Schritt 1: Rohe Farbwerte als CSS-Variablen (vollständige hsl()-Werte, kein
  * v3-Triplet-Format), getrennt in Light-Mode-Root. Schritt 2 mappt sie unten
  * per @theme inline auf Tailwind-Utilities.
  */
 :root {
-  --background: hsl(36 45% 96%);
-  --foreground: hsl(20 40% 14%);
+  --background: hsl(36 40% 97%);
+  --foreground: hsl(20 15% 15%);
 
-  --card: hsl(40 50% 98%);
-  --card-foreground: hsl(20 40% 14%);
+  --card: hsl(40 45% 98%);
+  --card-foreground: hsl(20 15% 15%);
 
-  --primary: hsl(24 35% 32%);
-  --primary-foreground: hsl(38 45% 97%);
+  --primary: hsl(24 35% 30%);
+  --primary-foreground: hsl(38 40% 97%);
 
-  --secondary: hsl(28 50% 48%);
-  --secondary-foreground: hsl(38 45% 97%);
+  --secondary: hsl(32 35% 60%);
+  --secondary-foreground: hsl(24 25% 14%);
 
-  --accent: hsl(95 18% 42%);
-  --accent-foreground: hsl(38 45% 97%);
+  --accent: hsl(95 18% 40%);
+  --accent-foreground: hsl(38 40% 97%);
 
-  --muted: hsl(36 30% 91%);
-  --muted-foreground: hsl(24 18% 38%);
+  --muted: hsl(36 25% 91%);
+  --muted-foreground: hsl(24 12% 40%);
 
-  --border: hsl(34 28% 85%);
-  --input: hsl(34 28% 85%);
-  --ring: hsl(24 35% 32%);
+  --border: hsl(34 24% 85%);
+  --input: hsl(34 24% 85%);
+  --ring: hsl(24 35% 30%);
 
   --destructive: hsl(0 70% 50%);
   --destructive-foreground: hsl(0 0% 100%);
 
-  --radius: 0.75rem;
+  /* Dunkle Sektionen im Wechsel (Referenz-Design) */
+  --dark: hsl(30 8% 13%);
+  --dark-foreground: hsl(36 25% 95%);
+  --dark-muted: hsl(30 6% 22%);
+
+  /* Warme Karamell-Fläche für Speisekarten-/Highlight-Sektionen */
+  --tan: hsl(32 35% 64%);
+  --tan-foreground: hsl(36 40% 98%);
+
+  --radius: 1rem;
 }
 
 /* Schritt 2: CSS-Variablen auf Tailwind-Utilities mappen (bg-primary, text-accent, …) */
@@ -67,14 +76,21 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
-  --radius-sm: calc(var(--radius) - 0.25rem);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 0.25rem);
+  --color-dark: var(--dark);
+  --color-dark-foreground: var(--dark-foreground);
+  --color-dark-muted: var(--dark-muted);
+
+  --color-tan: var(--tan);
+  --color-tan-foreground: var(--tan-foreground);
+
+  --radius-sm: calc(var(--radius) - 0.5rem);
+  --radius-md: calc(var(--radius) - 0.25rem);
+  --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 0.5rem);
 
   /* Lokal gehostete Fonts (kein Google-Fonts-CDN, kein Cookie-Banner nötig) */
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Playfair Display", Georgia, serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Schritt 3: Basis-Styles – Variablen direkt referenzieren, nicht erneut in hsl() wrappen */
@@ -82,5 +98,34 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+  }
+}
+
+@layer components {
+  /* Bogen-Ausschnitt: flache Unterkante, Halbkreis oben (Referenz-Design-Signatur) */
+  .arch-top {
+    border-radius: 999px 999px 0 0;
+  }
+
+  /* Scroll-Reveal: sanftes Einblenden + Aufsteigen beim Erscheinen im Viewport */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 }

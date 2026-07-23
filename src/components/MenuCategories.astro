@@ -1,0 +1,62 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  categories: { id: string; label: string }[];
+}
+
+const { categories } = Astro.props;
+
+function iconFor(label: string): string {
+  const l = label.toLowerCase();
+  if (l.includes("getränk") || l.includes("kaffee") || l.includes("drink")) return "mdi:coffee";
+  if (l.includes("kuchen") || l.includes("dessert") || l.includes("süß")) return "mdi:cupcake";
+  if (l.includes("frühstück")) return "mdi:egg-fried";
+  if (l.includes("haupt") || l.includes("mittag") || l.includes("herzhaft")) return "mdi:silverware-fork-knife";
+  return "mdi:food";
+}
+---
+
+<section class="bg-dark py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <p data-reveal class="text-center text-sm font-bold tracking-[0.25em] text-tan uppercase">Speisekarte</p>
+    <h2 data-reveal class="mt-3 text-balance text-center font-display text-3xl font-extrabold text-dark-foreground sm:text-4xl">
+      Was möchtest du entdecken?
+    </h2>
+
+    <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+      {
+        categories.map((category, i) => (
+          <a
+            href="#speisekarte"
+            data-menu-category={category.id}
+            data-reveal
+            style={`transition-delay: ${i * 80}ms`}
+            class="flex flex-col items-center gap-3 rounded-2xl border border-dark-foreground/15 bg-dark-muted/60 px-4 py-8 text-center transition hover:border-tan/50 hover:bg-dark-muted"
+          >
+            <Icon name={iconFor(category.label)} class="h-8 w-8 text-tan" />
+            <span class="text-sm font-bold tracking-wide text-dark-foreground uppercase">{category.label}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>("[data-menu-category]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const catId = link.dataset.menuCategory;
+      const trigger = document.querySelector<HTMLButtonElement>(`[data-cat="${catId}"]`);
+      if (!trigger) return;
+      // Radix Tabs reagiert auf pointerdown, nicht nur auf click – daher die
+      // volle Event-Sequenz simulieren statt nur trigger.click() aufzurufen.
+      trigger.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true, cancelable: true, pointerType: "mouse" }));
+      trigger.dispatchEvent(new MouseEvent("mousedown", { bubbles: true, cancelable: true }));
+      trigger.dispatchEvent(new PointerEvent("pointerup", { bubbles: true, cancelable: true, pointerType: "mouse" }));
+      trigger.dispatchEvent(new MouseEvent("mouseup", { bubbles: true, cancelable: true }));
+      trigger.click();
+    });
+  });
+</script>
+

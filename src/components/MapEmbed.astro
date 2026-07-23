@@ -3,21 +3,32 @@ import { Icon } from "astro-icon/components";
 
 interface Props {
   mapsQuery?: string;
+  dark?: boolean;
 }
 
-const { mapsQuery = "Steinweg 9, 34317 Habichtswald-Ehlen" } = Astro.props;
+const { mapsQuery = "Steinweg 9, 34317 Habichtswald-Ehlen", dark = false } = Astro.props;
 const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}&output=embed`;
+
+const wrapperClass = dark
+  ? "border-dark-foreground/15 bg-dark-muted/60"
+  : "border-border bg-muted";
+const iconClass = dark ? "text-tan" : "text-primary";
+const titleClass = dark ? "text-dark-foreground" : "text-foreground";
+const textClass = dark ? "text-dark-foreground/70" : "text-muted-foreground";
+const buttonClass = dark
+  ? "bg-tan text-tan-foreground hover:brightness-110"
+  : "bg-primary text-primary-foreground hover:opacity-90";
 ---
 
 <div
   id="map-consent"
   data-src={embedSrc}
-  class="relative flex aspect-4/3 w-full flex-col items-center justify-center gap-4 rounded-xl border border-border bg-muted p-8 text-center sm:aspect-video"
+  class={`relative flex aspect-4/3 w-full flex-col items-center justify-center gap-4 rounded-2xl border p-8 text-center sm:aspect-video ${wrapperClass}`}
 >
-  <Icon name="mdi:map-marker-outline" class="h-10 w-10 text-primary" />
+  <Icon name="mdi:map-marker-outline" class={`h-10 w-10 ${iconClass}`} />
   <div>
-    <p class="font-display text-lg text-foreground">Karte anzeigen</p>
-    <p class="mt-1 max-w-sm text-sm text-muted-foreground">
+    <p class={`font-display text-lg font-bold ${titleClass}`}>Karte anzeigen</p>
+    <p class={`mt-1 max-w-sm text-sm ${textClass}`}>
       Beim Laden der Karte wird eine Verbindung zu Google Maps hergestellt und es können Cookies
       von Google gesetzt werden.
     </p>
@@ -25,7 +36,7 @@ const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}
   <button
     type="button"
     id="map-consent-button"
-    class="inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+    class={`inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold tracking-wide uppercase transition ${buttonClass}`}
   >
     Karte laden & Google Maps akzeptieren
   </button>
@@ -45,9 +56,9 @@ const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}
     iframe.loading = "lazy";
     iframe.referrerPolicy = "no-referrer-when-downgrade";
     iframe.title = "Google Maps – Café Det Lille Hus";
-    iframe.className = "h-full w-full rounded-xl border-0";
+    iframe.className = "h-full w-full rounded-2xl border-0";
 
     wrapper.replaceChildren(iframe);
-    wrapper.classList.remove("p-8", "gap-4", "bg-muted");
+    wrapper.className = "relative aspect-4/3 w-full sm:aspect-video";
   });
 </script>

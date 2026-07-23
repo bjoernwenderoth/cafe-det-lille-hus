@@ -13,14 +13,17 @@ const navItems = [
 
 <header class="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-    <a href={baseUrl} class="flex items-center gap-2 font-display text-lg font-normal text-foreground">
+    <a href={baseUrl} class="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-foreground">
       <Icon name="mdi:coffee" class="h-6 w-6 text-primary" />
       Café Det Lille Hus
     </a>
     <nav class="hidden gap-8 sm:flex">
       {
         navItems.map((item) => (
-          <a href={item.href} class="text-sm font-medium text-muted-foreground transition hover:text-primary">
+          <a
+            href={item.href}
+            class="text-sm font-semibold tracking-wide text-muted-foreground uppercase transition hover:text-primary"
+          >
             {item.label}
           </a>
         ))

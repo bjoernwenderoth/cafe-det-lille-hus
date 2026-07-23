@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import interiorShopCorner from "@/assets/restaurant/interior-shop-corner.webp";
+import wafflesTerrace from "@/assets/restaurant/waffles-terrace.webp";
+---
+
+<section class="border-t border-border bg-background py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <h2
+      data-reveal
+      class="text-balance text-center font-display text-4xl font-extrabold text-foreground sm:text-5xl"
+    >
+      Café &amp; Wohnaccessoires
+    </h2>
+
+    <div class="mt-16 grid gap-6 md:grid-cols-2 md:gap-10">
+      <Image
+        data-reveal
+        src={interiorShopCorner}
+        alt="Sitzecke mit Deko-Regal im Café Det Lille Hus"
+        widths={[400, 600, 800]}
+        sizes="(min-width: 768px) 32rem, 90vw"
+        class="arch-top h-80 w-full object-cover sm:h-96"
+      />
+      <div data-reveal class="flex items-center rounded-2xl bg-tan p-8 sm:p-10">
+        <p class="text-balance font-display text-2xl leading-snug font-bold text-tan-foreground sm:text-3xl">
+          „Det Lille Hus" bedeutet das kleine Haus – unser Anspruch an einen Ort, an dem man sich
+          sofort wohlfühlt.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-2 md:gap-10">
+      <div data-reveal class="flex items-center rounded-2xl bg-muted p-8 sm:p-10 md:order-1">
+        <p class="text-lg leading-relaxed text-muted-foreground">
+          In unserem Fachwerkhaus in Habichtswald-Ehlen verbinden wir Café und
+          Wohnaccessoires-Laden: hausgemachte Waffeln und Kuchen, frisch gebrühter Kaffee – und
+          nebenan skandinavisch inspirierte Deko zum Stöbern und Mitnehmen.
+        </p>
+      </div>
+      <Image
+        data-reveal
+        src={wafflesTerrace}
+        alt="Frisch gebackene Waffeln mit Kaffee auf der Terrasse"
+        widths={[400, 600, 800]}
+        sizes="(min-width: 768px) 32rem, 90vw"
+        class="arch-top h-80 w-full object-cover sm:h-96 md:order-2"
+      />
+    </div>
+  </div>
+</section>
