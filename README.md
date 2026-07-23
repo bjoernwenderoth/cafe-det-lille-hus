@@ -14,7 +14,7 @@ Website für das Café Det Lille Hus, gebaut mit [Astro](https://astro.build) un
 ```
 /
 ├── public/
-│   ├── favicon.svg
+│   ├── favicon.png
 │   └── robots.txt
 ├── src/
 │   ├── components/
@@ -24,7 +24,6 @@ Website für das Café Det Lille Hus, gebaut mit [Astro](https://astro.build) un
 │   │   └── BaseLayout.astro
 │   ├── pages/
 │   │   ├── index.astro
-│   │   ├── about.astro
 │   │   └── 404.astro
 │   └── styles/
 │       └── global.css

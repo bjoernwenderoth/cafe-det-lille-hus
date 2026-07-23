@@ -4,48 +4,92 @@ import interiorShopCorner from "@/assets/restaurant/interior-shop-corner.webp";
 import wafflesTerrace from "@/assets/restaurant/waffles-terrace.webp";
 ---
 
-<section class="border-t border-border bg-background py-20 sm:py-28">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+<section class="overflow-hidden border-t border-border bg-background py-20 sm:py-28">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
     <h2
       data-reveal
-      class="text-balance text-center font-display text-4xl font-semibold text-foreground sm:text-5xl"
+      data-reveal-from="top"
+      class="text-balance text-center font-display text-4xl font-semibold text-foreground sm:text-5xl lg:text-6xl"
     >
       Café &amp; Wohnaccessoires
     </h2>
 
-    <div class="mt-16 grid gap-6 md:grid-cols-2 md:gap-10">
-      <Image
-        data-reveal
-        src={interiorShopCorner}
-        alt="Sitzecke mit Deko-Regal im Café Det Lille Hus"
-        widths={[400, 600, 800]}
-        sizes="(min-width: 768px) 32rem, 90vw"
-        class="arch-top h-80 w-full object-cover sm:h-96"
-      />
-      <div data-reveal class="flex items-center rounded-2xl bg-tan p-8 sm:p-10">
-        <p class="text-balance font-display text-2xl leading-snug font-medium text-tan-foreground sm:text-3xl">
-          „Det Lille Hus" bedeutet das kleine Haus – unser Anspruch an einen Ort, an dem man sich
-          sofort wohlfühlt.
-        </p>
-      </div>
-    </div>
+    <div class="mx-auto mt-10 grid max-w-[58rem] gap-10 md:grid-cols-2 md:gap-8 lg:gap-12">
+      <div class="flex min-w-0 flex-col items-stretch gap-8">
+        <Image
+          data-reveal
+          data-reveal-from="bottom"
+          src={interiorShopCorner}
+          alt="Gemütliche Sitzecke und Wohnaccessoires im Café Det Lille Hus"
+          widths={[400, 600, 900]}
+          sizes="(min-width: 768px) 28rem, calc(100vw - 2rem)"
+          class="arch-top aspect-[2/1] w-full object-cover object-[center_56%] sm:object-[center_54%]"
+        />
 
-    <div class="mt-6 grid gap-6 md:grid-cols-2 md:gap-10">
-      <div data-reveal class="flex items-center rounded-2xl bg-muted p-8 sm:p-10 md:order-1">
-        <p class="text-lg leading-relaxed text-muted-foreground">
-          In unserem Fachwerkhaus in Habichtswald-Ehlen verbinden wir Café und
-          Wohnaccessoires-Laden: hausgemachte Waffeln und Kuchen, frisch gebrühter Kaffee – und
-          nebenan skandinavisch inspirierte Deko zum Stöbern und Mitnehmen.
+        <p
+          data-reveal
+          style="transition-delay: 160ms"
+          class="px-1 text-center text-base leading-8 text-muted-foreground sm:px-3 sm:text-lg"
+        >
+          Café Det Lille Hus wurde mit der Idee gegründet, einen Ort zu schaffen, an dem sich
+          Menschen wohlfühlen – bei einer guten Tasse Kaffee, einem Stück hausgemachtem Kuchen und
+          angenehmer Gesellschaft.
         </p>
+
+        <div
+          data-reveal
+          data-reveal-from="left"
+          style="transition-delay: 240ms"
+          class="flex min-h-64 flex-col items-center justify-center rounded-2xl bg-tan p-7 text-center text-tan-foreground shadow-[0_10px_28px_hsl(24_24%_26%/0.18)] sm:p-9"
+        >
+          <h3 class="text-balance font-display text-xl leading-snug font-semibold sm:text-2xl">
+            Mit Liebe gemacht – und mit Zeit zum Genießen.
+          </h3>
+          <p class="mt-5 leading-relaxed text-tan-foreground/85">
+            Wir legen großen Wert auf ausgewählte Zutaten, handwerkliche Zubereitung und einen
+            herzlichen, persönlichen Service.
+          </p>
+        </div>
       </div>
-      <Image
-        data-reveal
-        src={wafflesTerrace}
-        alt="Frisch gebackene Waffeln mit Kaffee auf der Terrasse"
-        widths={[400, 600, 800]}
-        sizes="(min-width: 768px) 32rem, 90vw"
-        class="arch-top h-80 w-full object-cover sm:h-96 md:order-2"
-      />
+
+      <div class="flex min-w-0 flex-col items-stretch gap-8">
+        <div
+          data-reveal
+          data-reveal-from="right"
+          style="transition-delay: 80ms"
+          class="flex min-h-64 flex-col items-center justify-center rounded-2xl bg-tan p-7 text-center text-tan-foreground shadow-[0_10px_28px_hsl(24_24%_26%/0.18)] sm:p-9"
+        >
+          <h3 class="text-balance font-display text-xl leading-snug font-semibold sm:text-2xl">
+            Ein kleines Haus für gute Momente.
+          </h3>
+          <p class="mt-5 leading-relaxed text-tan-foreground/85">
+            „Det Lille Hus“ bedeutet „das kleine Haus“ und steht für unsere Philosophie: ein
+            gemütlicher, familiärer Rückzugsort mitten im Alltag.
+          </p>
+        </div>
+
+        <p
+          data-reveal
+          data-reveal-from="zoom"
+          style="transition-delay: 300ms"
+          class="px-1 text-center text-base leading-8 text-muted-foreground sm:px-3 sm:text-lg"
+        >
+          In unserem Fachwerkhaus in Habichtswald-Ehlen verbinden wir Café und
+          Wohnaccessoires-Laden: hausgemachte Waffeln und Kuchen, frisch gebrühter Kaffee und
+          skandinavisch inspirierte Deko zum Stöbern und Mitnehmen.
+        </p>
+
+        <Image
+          data-reveal
+          data-reveal-from="top"
+          style="transition-delay: 380ms"
+          src={wafflesTerrace}
+          alt="Frisch gebackene Waffeln und Kaffee auf der Terrasse des Café Det Lille Hus"
+          widths={[400, 600, 900]}
+          sizes="(min-width: 768px) 28rem, calc(100vw - 2rem)"
+          class="arch-bottom aspect-[2/1] w-full object-cover object-[center_70%] sm:object-[center_66%]"
+        />
+      </div>
     </div>
   </div>
 </section>
