@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import breakfastPlatter from "@/assets/restaurant/breakfast-platter.webp";
 
 interface Props {
   categories: { id: string; label: string }[];
@@ -17,28 +19,53 @@ function iconFor(label: string): string {
 }
 ---
 
-<section class="bg-dark py-20 sm:py-28">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <p data-reveal class="text-center text-sm font-semibold tracking-[0.25em] text-tan uppercase">Speisekarte</p>
-    <h2 data-reveal class="mt-3 text-balance text-center font-display text-3xl font-semibold text-dark-foreground sm:text-4xl">
-      Was möchtest du entdecken?
-    </h2>
+<section id="menu-entdecken" class="relative isolate min-h-[42rem] scroll-mt-24 overflow-hidden bg-dark">
+  <Image
+    src={breakfastPlatter}
+    alt=""
+    aria-hidden="true"
+    widths={[800, 1200, 1800]}
+    sizes="100vw"
+    class="absolute inset-0 h-full w-full object-cover object-[42%_center] lg:object-center"
+  />
+  <div aria-hidden="true" class="menu-showcase-overlay absolute inset-0"></div>
 
-    <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
-      {
-        categories.map((category, i) => (
-          <a
-            href="#speisekarte"
-            data-menu-category={category.id}
-            data-reveal
-            style={`transition-delay: ${i * 80}ms`}
-            class="flex flex-col items-center gap-3 rounded-2xl border border-dark-foreground/15 bg-dark-muted/60 px-4 py-8 text-center transition hover:border-tan/50 hover:bg-dark-muted"
-          >
-            <Icon name={iconFor(category.label)} class="h-8 w-8 text-tan" />
-            <span class="text-sm font-semibold tracking-wide text-dark-foreground uppercase">{category.label}</span>
-          </a>
-        ))
-      }
+  <div class="relative mx-auto flex min-h-[42rem] max-w-6xl items-center justify-end px-4 py-20 sm:px-6 sm:py-24">
+    <div class="w-full lg:max-w-[38rem]">
+      <div data-reveal class="max-w-xl lg:ml-auto">
+        <p class="text-sm font-semibold tracking-[0.25em] text-tan uppercase">Speisekarte</p>
+        <h2 class="mt-3 text-balance font-display text-3xl font-semibold text-dark-foreground sm:text-4xl">
+          Was möchtest du entdecken?
+        </h2>
+        <p class="mt-4 max-w-lg leading-relaxed text-dark-foreground/75">
+          Von herzhaften Kleinigkeiten bis zum Lieblingsgetränk – wähle eine Kategorie und springe
+          direkt zu unserer aktuellen Auswahl.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-2 gap-4 sm:gap-5">
+        {
+          categories.map((category, i) => (
+            <a
+              href="#speisekarte"
+              data-menu-category={category.id}
+              data-reveal
+              data-reveal-scale
+              style={`transition-delay: ${120 + i * 100}ms`}
+              class="group flex min-h-40 flex-col items-center justify-center gap-4 rounded-2xl border border-dark-foreground/15 bg-dark/75 px-4 py-7 text-center shadow-xl shadow-dark/20 backdrop-blur-[3px] transition-colors hover:border-tan/60 hover:bg-dark/90 focus-visible:ring-2 focus-visible:ring-tan focus-visible:ring-offset-2 focus-visible:ring-offset-dark focus-visible:outline-none sm:min-h-44"
+            >
+              <span
+                class="flex h-12 w-12 items-center justify-center rounded-full border border-dark-foreground/25 text-dark-foreground transition-colors group-hover:border-tan/60 group-hover:text-tan"
+              >
+                <Icon name={iconFor(category.label)} class="h-7 w-7" />
+              </span>
+              <span class="text-sm leading-snug font-semibold tracking-[0.09em] text-dark-foreground uppercase sm:text-base">
+                {category.label}
+              </span>
+            </a>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
@@ -59,4 +86,3 @@ function iconFor(label: string): string {
     });
   });
 </script>
-

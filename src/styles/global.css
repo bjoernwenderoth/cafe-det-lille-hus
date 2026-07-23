@@ -118,6 +118,42 @@
     transform: translateY(0);
   }
 
+  /* Menü-Showcase wie in der Referenz: Kacheln wachsen beim Eintritt in den
+     Viewport weich aus der Fläche heraus. */
+  [data-reveal][data-reveal-scale] {
+    transform: translateY(1rem) scale(0.32);
+    transform-origin: center;
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  [data-reveal][data-reveal-scale].is-visible {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Das Foto bleibt links klar erkennbar; hinter den interaktiven Karten wird
+     es für verlässlichen Textkontrast gezielt abgedunkelt. */
+  .menu-showcase-overlay {
+    background:
+      linear-gradient(180deg, hsl(24 24% 16% / 0.5), hsl(24 24% 16% / 0.74)),
+      linear-gradient(90deg, hsl(24 24% 16% / 0.12) 0%, hsl(24 24% 16% / 0.48) 46%, hsl(24 24% 16% / 0.94) 100%);
+  }
+
+  @media (min-width: 64rem) {
+    .menu-showcase-overlay {
+      background: linear-gradient(
+        90deg,
+        hsl(24 24% 16% / 0.16) 0%,
+        hsl(24 24% 16% / 0.3) 38%,
+        hsl(24 24% 16% / 0.9) 64%,
+        hsl(24 24% 16% / 0.98) 100%
+      );
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     [data-reveal] {
       opacity: 1;
