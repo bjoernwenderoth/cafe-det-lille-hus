@@ -8,17 +8,16 @@ export interface DaySchedule {
 
 export const openingHours: DaySchedule[] = [
   { day: 1, label: "Montag", closed: true },
-  { day: 2, label: "Dienstag", open: "08:00", close: "18:00" },
-  { day: 3, label: "Mittwoch", open: "08:00", close: "18:00" },
-  { day: 4, label: "Donnerstag", open: "08:00", close: "18:00" },
-  { day: 5, label: "Freitag", open: "08:00", close: "18:00" },
-  { day: 6, label: "Samstag", open: "08:00", close: "18:00" },
-  { day: 0, label: "Sonntag", open: "08:00", close: "18:00" },
+  { day: 2, label: "Dienstag", closed: true },
+  { day: 3, label: "Mittwoch", open: "10:00", close: "17:00" },
+  { day: 4, label: "Donnerstag", open: "10:00", close: "17:00" },
+  { day: 5, label: "Freitag", open: "10:00", close: "17:00" },
+  { day: 6, label: "Samstag", open: "10:00", close: "13:00" },
+  { day: 0, label: "Sonntag", closed: true },
 ];
 
 export const address = {
-  street: "Musterstraße 1",
-  zipCity: "12345 Musterstadt",
-  phone: "+49 30 1234567",
-  email: "hallo@detlillehus.de",
+  street: "Steinweg 9",
+  zipCity: "34317 Habichtswald-Ehlen",
+  phone: "+49 162 2857299",
 };

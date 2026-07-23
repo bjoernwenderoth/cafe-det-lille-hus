@@ -5,7 +5,7 @@ interface Props {
   mapsQuery?: string;
 }
 
-const { mapsQuery = "Musterstraße 1, 12345 Musterstadt" } = Astro.props;
+const { mapsQuery = "Steinweg 9, 34317 Habichtswald-Ehlen" } = Astro.props;
 const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}&output=embed`;
 ---
 
