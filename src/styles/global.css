@@ -1,9 +1,6 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
-@import "@fontsource/poppins/500.css";
-@import "@fontsource/poppins/600.css";
-@import "@fontsource/poppins/700.css";
-@import "@fontsource/poppins/800.css";
+@import "@fontsource-variable/fraunces";
 
 /*
  * Craft-Cafe-Stil – Café Det Lille Hus
@@ -37,14 +34,14 @@
   --destructive: hsl(0 70% 50%);
   --destructive-foreground: hsl(0 0% 100%);
 
-  /* Dunkle Sektionen im Wechsel (Referenz-Design) */
-  --dark: hsl(30 8% 13%);
-  --dark-foreground: hsl(36 25% 95%);
-  --dark-muted: hsl(30 6% 22%);
+  /* Dunkle Sektionen im Wechsel (Referenz-Design) – bewusst warmes Mokka statt Anthrazit, hell genug für ruhigen Kontrast */
+  --dark: hsl(24 24% 26%);
+  --dark-foreground: hsl(36 30% 96%);
+  --dark-muted: hsl(24 20% 34%);
 
   /* Warme Karamell-Fläche für Speisekarten-/Highlight-Sektionen */
-  --tan: hsl(32 35% 64%);
-  --tan-foreground: hsl(36 40% 98%);
+  --tan: hsl(32 42% 72%);
+  --tan-foreground: hsl(24 30% 20%);
 
   --radius: 1rem;
 }
@@ -90,7 +87,7 @@
 
   /* Lokal gehostete Fonts (kein Google-Fonts-CDN, kein Cookie-Banner nötig) */
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", Georgia, serif;
 }
 
 /* Schritt 3: Basis-Styles – Variablen direkt referenzieren, nicht erneut in hsl() wrappen */

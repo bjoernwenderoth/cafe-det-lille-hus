@@ -35,7 +35,7 @@ export default function MenuTabs({ menu }: MenuTabsProps) {
             key={category.id}
             value={category.id}
             data-cat={category.id}
-            className="rounded-full border-2 border-tan-foreground/30 bg-transparent px-5 py-2.5 text-sm font-bold tracking-wide text-tan-foreground uppercase shadow-none data-[state=active]:border-tan-foreground data-[state=active]:bg-tan-foreground data-[state=active]:text-tan"
+            className="rounded-full border-2 border-tan-foreground/30 bg-transparent px-5 py-2.5 text-sm font-semibold tracking-wide text-tan-foreground uppercase shadow-none data-[state=active]:border-tan-foreground data-[state=active]:bg-tan-foreground data-[state=active]:text-tan"
           >
             {category.label}
           </TabsTrigger>
@@ -63,11 +63,11 @@ export default function MenuTabs({ menu }: MenuTabsProps) {
                   </div>
                 )}
                 <div className="flex flex-1 flex-col p-5">
-                  <p className="font-display text-lg font-bold text-secondary uppercase">{item.name}</p>
+                  <p className="font-display text-lg font-semibold text-secondary uppercase">{item.name}</p>
                   {item.description && (
                     <p className="mt-1 flex-1 text-sm text-muted-foreground">{item.description}</p>
                   )}
-                  <p className="mt-3 font-display text-lg font-extrabold text-foreground">{item.price}</p>
+                  <p className="mt-3 font-display text-lg font-semibold text-foreground">{item.price}</p>
                 </div>
               </li>
             ))}
