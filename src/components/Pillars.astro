@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import exteriorFacade from "@/assets/restaurant/exterior-facade.jpg";
+import exteriorFacade from "@/assets/restaurant/exterior-facade-warm.png";
 
 const pillars = [
   {
@@ -26,20 +26,30 @@ const pillars = [
 ];
 ---
 
-<section class="relative">
-  <Image
-    src={exteriorFacade}
-    alt="Das Fachwerkhaus von Café Det Lille Hus"
-    widths={[800, 1200, 1800, 2400]}
-    sizes="100vw"
-    class="h-[420px] w-full object-cover sm:h-[480px]"
-  />
+<section id="konzept" class="relative scroll-mt-20 bg-background pb-20 sm:scroll-mt-24 sm:pb-28">
+  <div class="relative h-[31rem] overflow-hidden sm:h-[36rem] lg:h-[39rem]">
+    <Image
+      src={exteriorFacade}
+      alt="Das Fachwerkhaus von Café Det Lille Hus"
+      widths={[800, 1200, 1800, 2400]}
+      sizes="100vw"
+      class="h-full w-full scale-105 rotate-[-1deg] object-cover object-[56%_100%] sm:object-[54%_100%] lg:object-[center_bottom]"
+    />
+    <div
+      aria-hidden="true"
+      class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-dark/15 to-transparent"
+    ></div>
+  </div>
 
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <div class="relative -mt-20 grid gap-5 sm:-mt-24 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="relative z-10 mx-auto -mt-8 max-w-6xl px-4 sm:-mt-10 sm:px-6 lg:-mt-12">
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
       {
         pillars.map((pillar, i) => (
-          <div data-reveal style={`transition-delay: ${i * 90}ms`} class="rounded-2xl bg-card p-6 shadow-lg">
+          <div
+            data-reveal
+            style={`transition-delay: ${i * 90}ms`}
+            class="h-full rounded-3xl border border-white/60 bg-card/95 p-6 shadow-[0_18px_45px_hsl(24_24%_20%/0.16)] backdrop-blur-sm sm:p-7"
+          >
             <p class="font-display text-4xl font-semibold text-secondary">{pillar.number}</p>
             <h3 class="mt-3 font-display text-lg font-semibold text-foreground">{pillar.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
@@ -48,6 +58,4 @@ const pillars = [
       }
     </div>
   </div>
-
-  <div class="pb-20 sm:pb-28"></div>
 </section>
